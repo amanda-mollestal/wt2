@@ -1,12 +1,14 @@
 import client from './elasticsearch'
-
+import path from 'path'
 import fs from 'fs'
 import csvParser from 'csv-parser'
 
 export default async function saveData() {
   const results = [] as any
 
-  fs.createReadStream('./src/dataset/myData.csv')
+  const csvPath = path.join(process.cwd(), 'src/dataset', 'myData.csv')
+
+  fs.createReadStream(csvPath)
     .pipe(csvParser())
     .on('data', async (data) => {
 
