@@ -8,6 +8,7 @@ export default async function saveData() {
 
   const csvPath = path.join(process.cwd(), 'src/dataset', 'myData.csv')
 
+  
   fs.createReadStream(csvPath)
     .pipe(csvParser())
     .on('data', async (data) => {
