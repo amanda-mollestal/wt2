@@ -17,19 +17,15 @@ const PieChart = ({ data, question }: { data: any, question: string }) => {
 
   // Create a set of unique responses
   const uniqueResponses = new Set(data)
-  console.log(uniqueResponses)
 
   // Convert the set back to an array
   const distinctResponses = Array.from(uniqueResponses)
-  console.log(distinctResponses)
 
   const responseCounts: any[] = []
 
   const chartColors = []
   for (let i = 0; i < distinctResponses.length; i++) {
-    console.log(distinctResponses[i])
     responseCounts.push(data.filter((r: string) => r === distinctResponses[i]).length)
-    console.log(data.filter((r: string) => r === distinctResponses[i]).length)
     chartColors.push(backgroundColors[i])
 
   }
