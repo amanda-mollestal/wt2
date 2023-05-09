@@ -5,16 +5,17 @@ import styles from '@/styles/Home.module.css'
 import axios from 'axios'
 import saveData from '@/elasticsearch/savedata'
 import getData from '@/elasticsearch/getdata'
-import Data from '@/components/Data'
+import PieChart from '@/components/PieChart'
 
 
 const inter = Inter({ subsets: ['latin'] })
 
 type Props = {
-  data: any
+  diagnosedData: any,
+  hurtCareerData: any
 }
 
-export default function Home({ data }: Props) {
+export default function Home({ diagnosedData, hurtCareerData }: Props) {
   return (
     <>
       <Head>
@@ -26,7 +27,8 @@ export default function Home({ data }: Props) {
       <main className={styles.main}>
         <div className="dataCheck">
 
-          <Data data={data}/>
+          <PieChart data={diagnosedData} question='Have you been diagnosed with a mental health condition by a medical professional?'/>
+          <PieChart data={hurtCareerData} question='Do you feel that being identified as a person with a mental health issue would hurt your career?'/>
         
         </div>
       </main>
@@ -37,16 +39,15 @@ export default function Home({ data }: Props) {
 export async function getServerSideProps() {
 
   await saveData()
-  const data = await getData('Have you been diagnosed with a mental health condition by a medical professional?')
-  console.log(data)
+  const diagnosedData = await getData('Have you been diagnosed with a mental health condition by a medical professional?')
+  const hurtCareerData = await getData('Do you feel that being identified as a person with a mental health issue would hurt your career?')
 
   return {
     props: {
-      data: data,
+      diagnosedData: diagnosedData,
+      hurtCareerData: hurtCareerData
     }
   }
 }
 
-/*  {data.map((x: any) => (
-        <Data data={x} key={x.id} />
-      ))}  */
+

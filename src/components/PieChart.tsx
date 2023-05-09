@@ -5,10 +5,20 @@ import { Pie } from 'react-chartjs-2'
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 type Props = {
-  data: any
+  data: any,
+  question: string
 }
 
-const Data = ({ data }) => {
+const PieChart = ({ data, question }) => {
+
+  const backgroundColors = [
+    'rgba(54, 162, 235, 0.2)',
+    'rgba(255, 99, 132, 0.2)',
+    'rgba(255, 206, 86, 0.2)',
+    'rgba(75, 192, 192, 0.2)',
+    'rgba(153, 102, 255, 0.2)',
+    'rgba(255, 159, 64, 0.2)',
+  ]
 
   // Create a set of unique responses
   const uniqueResponses = new Set(data)
@@ -20,8 +30,13 @@ const Data = ({ data }) => {
 
   const responseCounts: any[] = []
 
+  const chartColors = []
   for (let i = 0; i < distinctResponses.length; i++) {
+    console.log(distinctResponses[i])
     responseCounts.push(data.filter((r: string) => r === distinctResponses[i]).length)
+    console.log(data.filter((r: string) => r === distinctResponses[i]).length)
+    chartColors.push(backgroundColors[i])
+
   }
 
   const chartData = {
@@ -30,32 +45,19 @@ const Data = ({ data }) => {
       {
         label: 'Responses',
         data: responseCounts,
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)'
-        ]
+        backgroundColor: chartColors
       }
     ]
     }
+
   return (
     <div className='dataView'>
-     {distinctResponses.map((response, index) => (
-        <p key={index}>{response}: {responseCounts[index]}</p>
-      ))}
-      <Pie data={chartData} />
+      <h3>{question}</h3>
+      <div className='chart' >
+        <Pie data={chartData} />
+      </div>
     </div>
   )
 }
 
-export default Data
-
- /*const responseCounts = distinctResponses.map(response => {
-    return data.filter((r: string) => r === response).length
-  })*/
-
-
-  /*const yesResponses = responses.filter(response => response === 'yes');
-  const noResponses = responses.filter(response => response === 'no');
-
-  console.log(yesResponses); // ['yes', 'yes', 'yes']
-  console.log(noResponses); // ['no', 'no', 'no']*/
+export default PieChart
