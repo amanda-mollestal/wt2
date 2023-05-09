@@ -4,15 +4,17 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import axios from 'axios'
 import saveData from '@/elasticsearch/savedata'
+import getData from '@/elasticsearch/getdata'
+import Data from '@/components/Data'
 
 
 const inter = Inter({ subsets: ['latin'] })
 
 type Props = {
-  test: string
+  data: any
 }
 
-export default function Home({ test }: Props) {
+export default function Home({ data }: Props) {
   return (
     <>
       <Head>
@@ -22,8 +24,11 @@ export default function Home({ test }: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div className={styles.description}>
-          <h2> {test} </h2>
+        <div className="dataCheck">
+        <p>If so, what condition(s) were you diagnosed with?</p>
+        {data.map((x: any) => (
+          <Data data={x} key={x.id} />
+         ))}
         </div>
       </main>
     </>
@@ -32,11 +37,13 @@ export default function Home({ test }: Props) {
 
 export async function getServerSideProps() {
 
-  saveData()
+  await saveData()
+  const data = await getData()
+  //console.log(data)
 
   return {
     props: {
-      test: 'test',
+      data: data,
     }
   }
 }
