@@ -22,17 +22,9 @@ export default async function getData(question: string) {
       data.push(hit.fields[question][0])
     }
 
-    /*if(hit.fields) {
-      data.push({
-        id: hit._id,
-        question: question,
-        answer: hit.fields[question]
-      })
-    }*/
-
   }
 
-  //const data = response.hits.hits.map((hit: any) => hit._source)
+
 
   return data
 }

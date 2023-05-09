@@ -4,12 +4,7 @@ import { Pie } from 'react-chartjs-2'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
-type Props = {
-  data: any,
-  question: string
-}
-
-const PieChart = ({ data, question }) => {
+const PieChart = ({ data, question }: { data: any, question: string }) => {
 
   const backgroundColors = [
     'rgba(54, 162, 235, 0.2)',

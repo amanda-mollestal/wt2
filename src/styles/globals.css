@@ -55,6 +55,10 @@ body {
   color: rgb(var(--foreground-rgb));
   background: white;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 a {
@@ -62,11 +66,24 @@ a {
   text-decoration: none;
 }
 
-.dataCheck {
+.info {
+  display: flex;
+  width: 80vw;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 0;
+  
+}
+
+.charts {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 .dataView {
@@ -76,6 +93,7 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-bottom: 40px;
 }
 
 .chart {
