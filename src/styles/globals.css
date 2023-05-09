@@ -107,6 +107,11 @@ a {
   justify-content: center;
 }
 
+.dataView {
+  width: 50vw;
+  height: fit-content;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

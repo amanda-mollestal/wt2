@@ -25,10 +25,9 @@ export default function Home({ data }: Props) {
       </Head>
       <main className={styles.main}>
         <div className="dataCheck">
-        <p>If so, what condition(s) were you diagnosed with?</p>
-        {data.map((x: any) => (
-          <Data data={x} key={x.id} />
-         ))}
+
+          <Data data={data}/>
+        
         </div>
       </main>
     </>
@@ -38,8 +37,8 @@ export default function Home({ data }: Props) {
 export async function getServerSideProps() {
 
   await saveData()
-  const data = await getData()
-  //console.log(data)
+  const data = await getData('Have you been diagnosed with a mental health condition by a medical professional?')
+  console.log(data)
 
   return {
     props: {
@@ -47,3 +46,7 @@ export async function getServerSideProps() {
     }
   }
 }
+
+/*  {data.map((x: any) => (
+        <Data data={x} key={x.id} />
+      ))}  */
