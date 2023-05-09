@@ -1,7 +1,7 @@
 import { Client } from '@elastic/elasticsearch'
-import dotenv from 'dotenv'
+//import dotenv from 'dotenv'
 
-dotenv.config()
+//dotenv.config()
 const elasticId = process.env.ELASTIC_CLOUD_ID
 const elasticUser = process.env.ELASTIC_CLOUD_USERNAME
 const elasticPassword = process.env.ELASTIC_CLOUD_PASSWORD
