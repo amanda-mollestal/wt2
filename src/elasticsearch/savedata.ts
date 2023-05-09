@@ -9,9 +9,9 @@ export default async function saveData() {
   fs.createReadStream('./src/dataset/myData.csv')
     .pipe(csvParser())
     .on('data', async (data) => {
-   
+
       const id = (results.length / 2) + 1
-   
+
       results.push({
         index: { _index: 'dataset', _id: id }
       })
