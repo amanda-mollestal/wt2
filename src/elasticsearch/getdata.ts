@@ -16,7 +16,7 @@ export default async function getData(question: string): Promise<any[]> {
       },
       fields: [question]
     },
-    size: 1500
+    size: 1433
   })
 
   const data = [] as any
