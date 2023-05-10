@@ -1,3 +1,7 @@
+/**
+ * Elasticsearch client configuration file
+ */ 
+
 import { Client } from '@elastic/elasticsearch'
 
 const elasticId = process.env.ELASTIC_CLOUD_ID

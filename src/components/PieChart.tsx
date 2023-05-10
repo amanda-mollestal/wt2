@@ -4,8 +4,12 @@ import { Pie } from 'react-chartjs-2'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
+/**
+ * Component for rendering a pie chart using Chart.js
+ */
 const PieChart = ({ data, question }: { data: any, question: string }) => {
 
+  // Array of some colors to use in the chart
   const backgroundColors = [
     'rgba(54, 162, 235, 0.2)',
     'rgba(255, 99, 132, 0.2)',
@@ -22,12 +26,11 @@ const PieChart = ({ data, question }: { data: any, question: string }) => {
   const distinctResponses = Array.from(uniqueResponses)
 
   const responseCounts: any[] = []
-
   const chartColors = []
+
   for (let i = 0; i < distinctResponses.length; i++) {
     responseCounts.push(data.filter((r: string) => r === distinctResponses[i]).length)
     chartColors.push(backgroundColors[i])
-
   }
 
   const chartData = {
@@ -39,7 +42,7 @@ const PieChart = ({ data, question }: { data: any, question: string }) => {
         backgroundColor: chartColors
       }
     ]
-    }
+  }
 
   return (
     <div className='dataView'>

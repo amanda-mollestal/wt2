@@ -3,12 +3,14 @@ import path from 'path'
 import fs from 'fs'
 import csvParser from 'csv-parser'
 
+/**
+ * Saves data from a CSV file to Elasticsearch.
+ */
 export default async function saveData() {
   const results = [] as any
 
   const csvPath = path.join(process.cwd(), 'src/dataset', 'myData.csv')
 
-  
   fs.createReadStream(csvPath)
     .pipe(csvParser())
     .on('data', async (data) => {
@@ -30,4 +32,4 @@ export default async function saveData() {
         console.log('Data saved successfully!')
       }
     })
-};
+}

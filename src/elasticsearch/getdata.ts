@@ -1,6 +1,12 @@
 import client from './elasticsearch'
 
-export default async function getData(question: string) {
+/**
+ * Retrieves data from Elasticsearch based on a question.
+ * 
+ * @param {string} question - The question to search for.
+ * @returns {Promise<any[]>} A Promise that resolves to an array of search results.
+ */
+export default async function getData(question: string): Promise<any[]> {
 
   const response = await client.search({
     index: 'dataset',
@@ -15,7 +21,6 @@ export default async function getData(question: string) {
 
   const data = [] as any
 
-
   for (const hit of response.hits.hits) {
 
     if (hit.fields) {
@@ -23,8 +28,6 @@ export default async function getData(question: string) {
     }
 
   }
-
-
 
   return data
 }

@@ -3,12 +3,23 @@ import saveData from '@/elasticsearch/savedata'
 import getData from '@/elasticsearch/getdata'
 import PieChart from '@/components/PieChart'
 
+/**
+ * The Home page
+ */
+
 type Props = {
   diagnosedData: any,
   hurtCareerData: any
 }
 
-export default function Home({ diagnosedData, hurtCareerData }: Props) {
+/**
+ * The main component of the application.
+ * 
+ * @function Home
+ * @param {Props} props - Props for the Home component.
+ * @returns {JSX.Element} - The Home component.
+ */
+export default function Home({ diagnosedData, hurtCareerData }: Props): JSX.Element {
   return (
     <>
       <Head>
@@ -33,7 +44,12 @@ export default function Home({ diagnosedData, hurtCareerData }: Props) {
   )
 }
 
-export async function getServerSideProps() {
+/**
+ * Retrieves data from Elasticsearch and passes it as props to the Home component.
+ *
+ * @returns {Promise<{props: Props}>} - A Promise containing the Props for the Home component.
+ */
+export async function getServerSideProps(): Promise<{ props: Props }> {
 
   await saveData()
   const diagnosedData = await getData('Have you been diagnosed with a mental health condition by a medical professional?')
