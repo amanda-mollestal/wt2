@@ -9,7 +9,9 @@ import PieChart from '@/components/PieChart'
 
 type Props = {
   diagnosedData: any,
-  hurtCareerData: any
+  hurtCareerData: any,
+  coWorkerData: any,
+  badlyHandledData: any,
 }
 
 /**
@@ -19,7 +21,7 @@ type Props = {
  * @param {Props} props - Props for the Home component.
  * @returns {JSX.Element} - The Home component.
  */
-export default function Home({ diagnosedData, hurtCareerData }: Props): JSX.Element {
+export default function Home({ diagnosedData, hurtCareerData, coWorkerData, badlyHandledData }: Props): JSX.Element {
   return (
     <>
       <Head>
@@ -37,6 +39,8 @@ export default function Home({ diagnosedData, hurtCareerData }: Props): JSX.Elem
 
           <PieChart data={diagnosedData} question='Have you been diagnosed with a mental health condition by a medical professional?' />
           <PieChart data={hurtCareerData} question='Do you feel that being identified as a person with a mental health issue would hurt your career?' />
+          <PieChart data={coWorkerData} question='Do you think that team members/co-workers would view you more negatively if they knew you suffered from a mental health issue?' />
+          <PieChart data={badlyHandledData} question='Have you observed or experienced an unsupportive or badly handled response to a mental health issue in your current or previous workplace?' />
 
         </div>
       </main>
@@ -55,10 +59,16 @@ export async function getServerSideProps(): Promise<{ props: Props }> {
   const diagnosedData = await getData('Have you been diagnosed with a mental health condition by a medical professional?')
   const hurtCareerData = await getData('Do you feel that being identified as a person with a mental health issue would hurt your career?')
 
+  const coWorkerData = await getData('Do you think that team members/co-workers would view you more negatively if they knew you suffered from a mental health issue?')
+
+  const badlyHandledData = await getData('Have you observed or experienced an unsupportive or badly handled response to a mental health issue in your current or previous workplace?')
+
   return {
     props: {
       diagnosedData: diagnosedData,
-      hurtCareerData: hurtCareerData
+      hurtCareerData: hurtCareerData,
+      coWorkerData: coWorkerData,
+      badlyHandledData: badlyHandledData
     }
   }
 }
